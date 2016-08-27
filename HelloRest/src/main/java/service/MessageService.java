@@ -23,6 +23,11 @@ public class MessageService {
 		return new ArrayList<Message> (messages.values());
 		
 	}
+	public List<Message> getMessagesPaginated(int start, int size){
+		ArrayList<Message> list = new ArrayList<Message> (messages.values());
+		return list.subList(start, start+size);
+	
+	}
 	public Message getMessage(long id){
 		Message ms = messages.get(id);
 		System.out.println(" Message = "+ ms);
@@ -41,8 +46,16 @@ public class MessageService {
 		if(aMessage.getId()<=0){
 			return null;
 		}
+		System.out.println("before update "+ messages.get(aMessage.getId()));
+		System.out.println("updating id = "+ aMessage.getId());
 		messages.put(aMessage.getId(), aMessage);
+		System.out.println("after update "+ messages.get(aMessage.getId()));
 		return aMessage;
+		
+	}
+	
+	public void deleteMessage(long id){
+		messages.remove(id);
 		
 	}
 
